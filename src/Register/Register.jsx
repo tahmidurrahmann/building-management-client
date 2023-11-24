@@ -4,7 +4,7 @@ const Register = () => {
     return (
         <div>
             <Helmet>
-                <title>Register | BuildMinder</title>
+                <title>Register | THE GLASS HOUSE</title>
             </Helmet>
         </div>
     );

@@ -4,7 +4,7 @@ const Apartment = () => {
     return (
         <div>
             <Helmet>
-                <title>Apartment | BuildMinder</title>
+                <title>Apartment | THE GLASS HOUSE</title>
             </Helmet>
         </div>
     );

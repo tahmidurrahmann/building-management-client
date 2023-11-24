@@ -4,7 +4,7 @@ const Login = () => {
     return (
         <div>
             <Helmet>
-                <title>Login | BuildMinder</title>
+                <title>Login | THE GLASS HOUSE</title>
             </Helmet>
         </div>
     );

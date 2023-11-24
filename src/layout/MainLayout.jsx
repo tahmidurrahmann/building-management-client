@@ -9,7 +9,7 @@ const MainLayout = () => {
         <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 border-b-[#004477] font-semibold" : "text-neutral-700"
+                isPending ? "pending" : isActive ? "border-b-2 text-white border-b-white font-semibold" : "text-white"
             }
         >
             <span className="flex justify-center items-center gap-1"><FaHome></FaHome>Home</span>
@@ -17,7 +17,7 @@ const MainLayout = () => {
         <NavLink
             to="/apartment"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 border-b-[#004477] font-medium text-neutral-900" : "text-neutral-700"
+                isPending ? "pending" : isActive ? "border-b-2 text-white border-b-white font-semibold" : "text-white"
             }
         >
             <span className="flex justify-center items-center gap-1"><MdApartment />Apartment</span>
@@ -25,18 +25,18 @@ const MainLayout = () => {
     </div>
 
     return (
-        <div className="shadow w-full md:px-8">
+        <div className="shadow fixed z-10 bg-[#151515] bg-opacity-30 w-full md:px-8">
             <div className="navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                        <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-[#151515] bg-opacity-30 rounded-box w-52">
                             {navLinks}
                         </ul>
                     </div>
-                    <div className="flex justify-center items-center px-2 mx-2 text-xl md:text-2xl font-bold"><img className="w-[60px]" src="https://i.ibb.co/0FWgkby/real-estate-building-construction-architecture-260nw-1995450515-removebg-preview.png" alt="" />Build<span className="text-[#004477]">Minder</span></div>
+                    <img className="w-[160px]" src="https://shantaholdings.com/admin/settings_images/Shanta-holdings-logo-white-1678170808.svg" alt="" />
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -47,7 +47,7 @@ const MainLayout = () => {
                     <NavLink
                         to="/login"
                         className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "border-b-2 border-b-[#004477] font-medium text-neutral-900" : "text-neutral-700"
+                            isPending ? "pending" : isActive ? "border-b-2 text-white border-b-white font-semibold" : "text-white"
                         }
                     >
                         <span className="flex justify-center items-center gap-1"><CgLogIn />Login</span>
