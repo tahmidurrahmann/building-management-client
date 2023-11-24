@@ -2,14 +2,27 @@ import { NavLink } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { CgLogIn } from "react-icons/cg";
+import { CgLogOut } from "react-icons/cg";
+import useAuth from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const MainLayout = () => {
 
-    const navLinks = <div className="flex justify-center items-center gap-5">
+    const { user, logOut } = useAuth();
+
+    const handleLogout = () => {
+        logOut()
+        .then(()=>{})
+        .catch(error => {
+            toast.error(error?.message);
+        })
+    }
+
+    const navLinks = <div className="flex flex-col lg:flex-row justify-center items-center gap-5">
         <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 text-white border-b-white font-semibold" : "text-white"
+                isPending ? "pending" : isActive ? "lg:border-b-2  text-neutral-900 lg:text-white lg:border-b-white font-semibold" : "text-neutral-600 lg:text-white"
             }
         >
             <span className="flex justify-center items-center gap-1"><FaHome></FaHome>Home</span>
@@ -17,7 +30,7 @@ const MainLayout = () => {
         <NavLink
             to="/apartment"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "border-b-2 text-white border-b-white font-semibold" : "text-white"
+                isPending ? "pending" : isActive ? "lg:border-b-2  text-neutral-900 lg:text-white lg:border-b-white font-semibold" : "text-neutral-600 lg:text-white"
             }
         >
             <span className="flex justify-center items-center gap-1"><MdApartment />Apartment</span>
@@ -32,7 +45,7 @@ const MainLayout = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-[#151515] bg-opacity-30 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52">
                             {navLinks}
                         </ul>
                     </div>
@@ -44,14 +57,20 @@ const MainLayout = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <NavLink
+                    {user?.email ? <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="m-1"><img className="w-[40px] rounded-full" src={user?.photoURL} alt="" /></label>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <h1 className="text-center text-neutral-900 font-bold">{user?.displayName}</h1>
+                            <button className="bg-[#DD2955] px-2 py-1 rounded-full text-white font-semibold justify-center flex items-center gap-2" onClick={handleLogout}>Logout<CgLogOut /></button>
+                        </ul>
+                    </div> : <NavLink
                         to="/login"
                         className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "border-b-2 text-white border-b-white font-semibold" : "text-white"
+                            isPending ? "pending" : isActive ? "lg:border-b-2  text-neutral-900 lg:text-white lg:border-b-white font-semibold" : "text-neutral-600 lg:text-white"
                         }
                     >
                         <span className="flex justify-center items-center gap-1"><CgLogIn />Login</span>
-                    </NavLink>
+                    </NavLink>}
                 </div>
             </div>
         </div>
