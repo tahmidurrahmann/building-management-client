@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import animation from "../assets/Animation - 1700378841837 (1).json"
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "../components/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -16,6 +16,7 @@ const Register = () => {
 
     const axiosPublic = useAxiosPublic();
     const { createUser } = useAuth();
+    let navigate = useNavigate();
 
     const {
         register, handleSubmit, formState: { errors } } = useForm()
@@ -37,8 +38,15 @@ const Register = () => {
             const user = result?.user;
             updateProfile(user, {
                 displayName: name, photoURL: image
-              }).then(() => {
-                toast.success("Successfully created your profile")
+              }).then( async () => {
+                toast.success("Successfully created your profile");
+                const saveLoginIntoDB = {
+                    email : email,
+                    name : name,
+                };
+                const res = await axiosPublic.post("/users",saveLoginIntoDB);
+                console.log(res?.data);
+                navigate("/")
               }).catch((error) => {
                 toast.error(error?.message)
               });

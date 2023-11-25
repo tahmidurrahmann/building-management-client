@@ -1,17 +1,30 @@
 import { FaGoogle } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SocialLogin = () => {
 
+    let navigate = useNavigate();
+    const location = useLocation();
+    const axiosPublic = useAxiosPublic();
+    let from = location.state?.from?.pathname || "/";
     const { googleLogin } = useAuth();
 
     const handleGoogleLogin = () => {
         googleLogin()
-        .then(result => {
-            const user = result?.user;
-            console.log(user);
+        .then((result) => {
+            const saveDataToDB = {
+                email : result?.user?.email,
+                name : result?.user?.displayName,
+            }
+            axiosPublic.post("/users", saveDataToDB)
+            .then(res => {
+                console.log(res?.data);
+            })
             toast.success("Google Sign in successful")
+            navigate(from, { replace: true })
         })
         .catch(error => {
             toast.error(error?.message)

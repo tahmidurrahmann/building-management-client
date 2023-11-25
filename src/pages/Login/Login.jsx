@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import animation from "../../assets/Animation - 1700378841837 (1).json"
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
@@ -11,6 +11,11 @@ const Login = () => {
 
     const { signInUser } = useAuth();
 
+    let navigate = useNavigate();
+    let location = useLocation();
+  
+    let from = location.state?.from?.pathname || "/";
+
     const {
         register, handleSubmit, formState: { errors } } = useForm()
 
@@ -19,7 +24,8 @@ const Login = () => {
         const password = data.password;
         signInUser(email, password)
         .then(() => {
-            toast.success("Sign in Successful")
+            toast.success("Sign in Successful");
+            navigate(from, { replace: true })
         })
         .catch(error => {
             toast.error(error?.message)
