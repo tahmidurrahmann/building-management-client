@@ -128,7 +128,7 @@ const Dashboard = () => {
                             }
                         </div>
                         <br />
-                        <hr />
+                        <div className="divider w-3/4 mx-auto"></div>
                         <br />
                         <div className="flex justify-center items-center pb-3 md:pb-0">
                             <NavLink

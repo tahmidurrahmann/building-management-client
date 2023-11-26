@@ -43,6 +43,7 @@ const Register = () => {
                 const saveLoginIntoDB = {
                     email : email,
                     name : name,
+                    role : "user",
                 };
                 const res = await axiosPublic.post("/users",saveLoginIntoDB);
                 console.log(res?.data);

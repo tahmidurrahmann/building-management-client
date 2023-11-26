@@ -2,17 +2,15 @@ import Loading from "../../../Loading/Loading";
 import useAgreement from "../../../hooks/useAgreement";
 import useAuth from "../../../hooks/useAuth";
 
-const UserProfile = () => {
+const MemberProfile = () => {
 
-    const { user } = useAuth();
+    const {user} = useAuth();
     const [agreementData, isPending] = useAgreement();
 
     if (isPending) {
         return <Loading></Loading>
     }
-
-    console.log(agreementData);
-
+    
     return (
         <div className="px-12">
             <h1 className="text-lg font-bold py-6">My Profile</h1>
@@ -34,21 +32,21 @@ const UserProfile = () => {
                         <div className="flex flex-col">
                             <div className="flex flex-row md:flex-col justify-between items-center md:items-start md:gap-0">
                                 <h1>Accept Date</h1>
-                                <p>None</p>
+                                <p>{agreement?.date}</p>
                             </div>
                             <div className="flex flex-row md:flex-col justify-between items-center md:items-start md:gap-0">
                                 <h1>Floor No.</h1>
-                                <p>None</p>
+                                <p>{agreement?.floorNo}</p>
                             </div>
                         </div>
                         <div className="flex flex-col">
-                        <div className="flex flex-row md:flex-col justify-between items-center md:items-start md:gap-0">
+                            <div className="flex flex-row md:flex-col justify-between items-center md:items-start md:gap-0">
                                 <h1>Room No.</h1>
-                                <p>None</p>
+                                <p>{agreement?.apartmentNo}</p>
                             </div>
                             <div className="flex flex-row md:flex-col justify-between items-center md:items-start md:gap-0">
-                                <h1>Block No.</h1>
-                                <p>None</p>
+                                <h1>Block Name</h1>
+                                <p>{agreement?.blockName}</p>
                             </div>
                         </div>
                     </div>)
@@ -58,4 +56,4 @@ const UserProfile = () => {
     );
 };
 
-export default UserProfile;
+export default MemberProfile;
