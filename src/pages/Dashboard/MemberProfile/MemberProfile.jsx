@@ -6,10 +6,11 @@ const MemberProfile = () => {
 
     const {user} = useAuth();
     const [agreementData, isPending] = useAgreement();
-
+    
     if (isPending) {
         return <Loading></Loading>
     }
+    console.log(agreementData);
     
     return (
         <div className="px-12">

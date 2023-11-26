@@ -58,7 +58,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Agree Request
+                                        Agreement Request
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/manageCoupons"

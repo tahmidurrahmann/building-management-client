@@ -12,6 +12,10 @@ import Dashboard from "../layout/Dashboard";
 import MemberProfile from "../pages/Dashboard/MemberProfile/MemberProfile";
 import AgreementRequest from "../pages/Dashboard/Admin/AgreementRequest";
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement";
+import ManageMembers from "../pages/Dashboard/Admin/ManageMembers";
+import PrivateRoute from "../private/PrivateRoute";
+import MemberRoute from "../private/MemberRoute";
+import AdminRoute from "../private/AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -44,29 +48,33 @@ const router = createBrowserRouter([
             // user
             {
                 path : "userProfile",
-                element : <UserProfile></UserProfile>
+                element : <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
             },
             {
                 path : "announcement",
-                element : <Announcement></Announcement>
+                element : <PrivateRoute><Announcement></Announcement></PrivateRoute>
             },
             // member
             {
                 path : "memberProfile",
-                element : <MemberProfile></MemberProfile>
+                element : <MemberRoute><MemberProfile></MemberProfile></MemberRoute>
             },
             // admin
             {
                 path : "adminProfile",
-                element : <AdminProfile></AdminProfile>,
+                element : <AdminRoute><AdminProfile></AdminProfile></AdminRoute>,
+            },
+            {
+                path : "manageMembers",
+                element : <AdminRoute><ManageMembers></ManageMembers></AdminRoute>,
             },
             {
                 path : "makeAnnouncement",
-                element : <MakeAnnouncement></MakeAnnouncement>,
+                element : <AdminRoute><MakeAnnouncement></MakeAnnouncement></AdminRoute>,
             },
             {
                 path : "agreementRequest",
-                element : <AgreementRequest></AgreementRequest>,
+                element : <AdminRoute><AgreementRequest></AgreementRequest></AdminRoute>,
             },
         ]
     }
