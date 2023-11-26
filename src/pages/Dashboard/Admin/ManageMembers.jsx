@@ -21,28 +21,42 @@ const ManageMembers = () => {
 
     const checkMember = data.filter(person => person.role === "member");
 
-    const handleRemoveMember = async (id) => {
-        const res = await axiosSecure.patch(`/users/${id}`);
-        if (res?.data?.modifiedCount) {
-            Swal.fire({
-                title: "You Successfully Remove this Member",
-                showClass: {
-                    popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                  `
-                },
-                hideClass: {
-                    popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                  `
-                }
-            });
-            refetch();
-        }
+    const handleRemoveMember = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/${id}`)
+                    .then(res => {
+                        if (res?.data?.modifiedCount) {
+                            Swal.fire({
+                                title: "You Successfully Remove this Member",
+                                showClass: {
+                                    popup: `
+                            animate__animated
+                            animate__fadeInUp
+                            animate__faster
+                          `
+                                },
+                                hideClass: {
+                                    popup: `
+                            animate__animated
+                            animate__fadeOutDown
+                            animate__faster
+                          `
+                                }
+                            });
+                            refetch();
+                        }
+                    })
+            }
+        });
     }
 
     return (

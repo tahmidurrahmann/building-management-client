@@ -30,7 +30,7 @@ const AgreementRequest = () => {
                                 title: "success!",
                                 text: "This user is Member now!",
                                 icon: "success"
-                              });
+                            });
                             refetch();
                         }
                     })
@@ -39,7 +39,29 @@ const AgreementRequest = () => {
     }
 
     const handleRejectUser = (id) => {
-        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/rejectAndChecked/${id}`)
+                    .then(res => {
+                        if (res?.data?.modifiedCount) {
+                            Swal.fire({
+                                title: "success!",
+                                text: "You successfully rejected this user!",
+                                icon: "success"
+                            });
+                            refetch();
+                        }
+                    })
+            }
+        });
     }
 
     return (
@@ -73,7 +95,7 @@ const AgreementRequest = () => {
                                 <td>${item?.rent}</td>
                                 <td>{item?.date}</td>
                                 <td><span onClick={() => handleAcceptUser(item._id)} className={`${item?.status === "checked" ? "text-primary text-base font-bold" : "px-2 py-1 border rounded bg-[#0d243e] text-white hover:bg-white hover:text-[#0d243e] hover:border hover:border-[#0d243e]"}`}>{item?.status === "checked" ? "Checked" : "Accept"}</span></td>
-                                <td><span onClick={()=>handleRejectUser(item._id)} className="px-2 py-1 border rounded bg-[#0d243e] text-white hover:bg-white hover:text-[#0d243e] hover:border hover:border-[#0d243e]">Reject</span></td>
+                                <td><span onClick={() => handleRejectUser(item._id)} className={`${item?.status === "reject" ? "text-red-600 font-bold text-base" : "px-2 py-1 border rounded bg-[#0d243e] text-white hover:bg-white hover:text-[#0d243e] hover:border hover:border-[#0d243e]"}`}>{item?.status === "reject" ? "Checked" : "Reject"}</span></td>
                             </tr>)
                         }
                     </tbody>

@@ -10,7 +10,8 @@ const MemberProfile = () => {
     if (isPending) {
         return <Loading></Loading>
     }
-    console.log(agreementData);
+
+    const showData = agreementData.filter(data => data.status === "checked");
     
     return (
         <div className="px-12">
@@ -29,7 +30,7 @@ const MemberProfile = () => {
             <div className="mt-10 border rounded-lg p-6 md:p-12 space-y-12">
                 <h1 className="text-lg font-bold pb-4">Agreement Information</h1>
                 {
-                    agreementData?.map(agreement => <div key={agreement?._id} className="text-neutral-400 flex flex-col md:flex-row md:gap-48 justify-start">
+                    showData?.map(agreement => <div key={agreement?._id} className="text-neutral-400 flex flex-col md:flex-row md:gap-48 justify-start">
                         <div className="flex flex-col">
                             <div className="flex flex-row md:flex-col justify-between items-center md:items-start md:gap-0">
                                 <h1>Accept Date</h1>
