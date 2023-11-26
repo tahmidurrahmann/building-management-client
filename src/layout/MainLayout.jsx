@@ -3,6 +3,8 @@ import { FaHome } from "react-icons/fa";
 import { MdApartment } from "react-icons/md";
 import { CgLogIn } from "react-icons/cg";
 import { CgLogOut } from "react-icons/cg";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { FaRegUser } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 
@@ -12,10 +14,10 @@ const MainLayout = () => {
 
     const handleLogout = () => {
         logOut()
-        .then(()=>{})
-        .catch(error => {
-            toast.error(error?.message);
-        })
+            .then(() => { })
+            .catch(error => {
+                toast.error(error?.message);
+            })
     }
 
     const navLinks = <div className="flex flex-col lg:flex-row justify-center items-center gap-5">
@@ -60,7 +62,15 @@ const MainLayout = () => {
                     {user?.email ? <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="m-1"><img className="w-[40px] rounded-full" src={user?.photoURL} alt="" /></label>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <h1 className="text-center text-neutral-900 font-bold">{user?.displayName}</h1>
+                            <h1 className="py-1 text-center text-neutral-600 font-semibold flex justify-center items-center gap-2"><FaRegUser /> {user?.displayName}</h1>
+                            <NavLink
+                                to="/dashboard"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "py-2 text-neutral-900 font-bold" : "text-neutral-900 font-bold py-2"
+                                }
+                            >
+                                <span className="flex justify-center items-center gap-1"><LuLayoutDashboard /> Dashboard</span>
+                            </NavLink>
                             <button className="bg-[#DD2955] px-2 py-1 rounded-full text-white font-semibold justify-center flex items-center gap-2" onClick={handleLogout}>Logout<CgLogOut /></button>
                         </ul>
                     </div> : <NavLink

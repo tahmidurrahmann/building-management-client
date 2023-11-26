@@ -1,11 +1,23 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import useAdmin from "../hooks/useAdmin";
+import useMember from "../hooks/useMember";
+import { IoHomeOutline } from "react-icons/io5";
+import Loading from "../Loading/Loading";
 
 const Dashboard = () => {
 
     const { user } = useAuth();
-    const isAdmin = true;
-    const isMember = true;
+    const [isAdmin, pending] = useAdmin();
+    const [isMember, isPending] = useMember();
+
+    if(isPending){
+        return <Loading></Loading>
+    }
+
+    if(pending){
+        return <Loading></Loading>
+    }
 
     return (
         <div>
@@ -13,7 +25,6 @@ const Dashboard = () => {
                 <div className="col-span-1 md:col-span-3 xl:col-span-2">
                     <div className="bg-gray-50 md:min-h-screen">
                         <h1 className="text-center md:text-xl xl:text-2xl font-bold py-4">THE GLASS HOUSE</h1>
-                        <h1 className="text-sm md:text-xl text-center font-medium">Menu</h1>
                         <div>
                             {
                                 user && isAdmin && <div className="flex flex-col  space-y-4 pt-4 justify-center items-center">
@@ -115,6 +126,19 @@ const Dashboard = () => {
                                     </NavLink>
                                 </div>
                             }
+                        </div>
+                        <br />
+                        <hr />
+                        <br />
+                        <div className="flex justify-center items-center pb-3 md:pb-0">
+                            <NavLink
+                                to="/"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3" : "text-black text-xl font-semibold"
+                                }
+                            >
+                               <span className="flex justify-center items-center gap-2"><IoHomeOutline /> Home</span>
+                            </NavLink>
                         </div>
                     </div>
                 </div>

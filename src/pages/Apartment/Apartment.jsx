@@ -49,7 +49,6 @@ const Apartment = () => {
             status: "pending",
             date: new Date().toISOString().split('T')[0],
         }
-        console.log(agreementInfos);
         if (user && user?.email) {
             const res = await axiosSecure.post("/agreementInfo", agreementInfos)
             if (res?.data?.insertedId) {
