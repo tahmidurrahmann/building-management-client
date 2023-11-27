@@ -17,6 +17,9 @@ import PrivateRoute from "../private/PrivateRoute";
 import MemberRoute from "../private/MemberRoute";
 import AdminRoute from "../private/AdminRoute";
 import ManageCoupon from "../pages/Dashboard/Admin/ManageCoupon";
+import MakePayment from "../pages/Dashboard/MemberProfile/MakePayment";
+import PaymentHistory from "../pages/Dashboard/MemberProfile/PaymentHistory";
+import MakePaymentById from "../pages/Dashboard/MemberProfile/MakePaymentById";
 
 const router = createBrowserRouter([
     {
@@ -59,6 +62,18 @@ const router = createBrowserRouter([
             {
                 path : "memberProfile",
                 element : <MemberRoute><MemberProfile></MemberProfile></MemberRoute>
+            },
+            {
+                path : "makePayment",
+                element : <MemberRoute><MakePayment></MakePayment></MemberRoute>
+            },
+            {
+                path : "makePayments",
+                element : <MemberRoute><MakePaymentById></MakePaymentById></MemberRoute>
+            },
+            {
+                path : "paymentHistory",
+                element : <MemberRoute><PaymentHistory></PaymentHistory></MemberRoute>
             },
             // admin
             {

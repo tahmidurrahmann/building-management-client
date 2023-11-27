@@ -19,7 +19,7 @@ const UserProfile = () => {
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 rounded-lg border p-6">
                 <div className="avatar">
                     <div className="w-24 rounded-full">
-                        <img src={user?.photoURL} />
+                        <img referrerPolicy="no-referrer" src={user?.photoURL} />
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">

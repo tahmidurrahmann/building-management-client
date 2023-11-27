@@ -60,7 +60,7 @@ const MainLayout = () => {
                 </div>
                 <div className="navbar-end">
                     {user?.email ? <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="m-1"><img className="w-[40px] rounded-full" src={user?.photoURL} alt="" /></label>
+                        <label tabIndex={0} className="m-1"><img className="w-[40px] rounded-full" referrerPolicy="no-referrer" src={user?.photoURL} alt="" /></label>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                             <h1 className="py-1 text-center text-neutral-600 font-semibold flex justify-center items-center gap-2"><FaRegUser /> {user?.displayName}</h1>
                             <NavLink
