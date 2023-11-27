@@ -127,14 +127,12 @@ const Dashboard = () => {
                                 </div>
                             }
                         </div>
-                        <br />
                         <div className="divider w-3/4 mx-auto"></div>
-                        <br />
                         <div className="flex justify-center items-center pb-3 md:pb-0">
                             <NavLink
                                 to="/"
                                 className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3" : "text-black text-xl font-semibold"
+                                    isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold md:py-3" : "text-black text-xl font-semibold"
                                 }
                             >
                                <span className="flex justify-center items-center gap-2"><IoHomeOutline /> Home</span>

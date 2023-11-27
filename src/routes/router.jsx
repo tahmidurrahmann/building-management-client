@@ -16,6 +16,7 @@ import ManageMembers from "../pages/Dashboard/Admin/ManageMembers";
 import PrivateRoute from "../private/PrivateRoute";
 import MemberRoute from "../private/MemberRoute";
 import AdminRoute from "../private/AdminRoute";
+import ManageCoupon from "../pages/Dashboard/Admin/ManageCoupon";
 
 const router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
             {
                 path : "agreementRequest",
                 element : <AdminRoute><AgreementRequest></AgreementRequest></AdminRoute>,
+            },
+            {
+                path : "manageCoupons",
+                element : <AdminRoute><ManageCoupon></ManageCoupon></AdminRoute>,
             },
         ]
     }

@@ -15,8 +15,6 @@ const Announcement = () => {
         return <Loading></Loading>
     }
 
-    console.log(allAnnouncements);
-
     return (
 
         <div className="max-w-screen-xl mx-auto">
