@@ -11,8 +11,6 @@ const UserProfile = () => {
         return <Loading></Loading>
     }
 
-    console.log(agreementData);
-
     return (
         <div className="px-12">
             <h1 className="text-lg font-bold py-6">My Profile</h1>
