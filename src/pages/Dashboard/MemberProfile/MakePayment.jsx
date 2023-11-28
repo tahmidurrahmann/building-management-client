@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
 import useAgreement from "../../../hooks/useAgreement";
+import { Helmet } from "react-helmet-async";
 
 const MakePayment = () => {
 
@@ -29,6 +30,9 @@ const MakePayment = () => {
 
     return (
         <div className="max-w-screen-xl mx-auto">
+            <Helmet>
+                <title>Make Payment | THE GLASS HOUSE</title>
+            </Helmet>
             <h1 className="text-xl p-4 md:pt-16 font-bold text-center md:text-left md:text-3xl">Make Payment</h1>
             {
                 showData?.map(payment => <form onSubmit={handlePayment} key={payment?._id} className="card-body">

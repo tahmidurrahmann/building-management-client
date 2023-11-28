@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../Loading/Loading";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageMembers = () => {
 
@@ -61,6 +62,10 @@ const ManageMembers = () => {
 
     return (
         <div className="max-w-screen-xl mx-auto my-10 md:my-20">
+            <Helmet>
+                <title>Manage Members | THE GLASS HOUSE</title>
+            </Helmet>
+            <h1 className="text-xl md:text-3xl font-bold text-center lg:text-left py-6">Manage Members</h1>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>

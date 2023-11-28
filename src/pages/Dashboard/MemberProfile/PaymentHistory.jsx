@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../Loading/Loading";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
 
@@ -33,6 +34,9 @@ const PaymentHistory = () => {
 
     return (
         <div className="lg:px-12">
+            <Helmet>
+                <title>Payment History | THE GLASS HOUSE</title>
+            </Helmet>
             <h1 className="text-xl text-center lg:text-left font-bold py-6 md:text-3xl">Payment History</h1>
             <form onSubmit={handleSearchMonth} className="flex justify-center items-center gap-6 my-6">
                 <input name="month" type="text" placeholder="Search Payments by Month Name" className="input input-bordered md:w-1/2" required />

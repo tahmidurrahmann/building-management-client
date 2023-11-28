@@ -5,6 +5,7 @@ import { Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { Helmet } from "react-helmet-async";
 
 
 const Announcement = () => {
@@ -18,6 +19,9 @@ const Announcement = () => {
     return (
 
         <div className="max-w-screen-xl mx-auto">
+            <Helmet>
+                <title>Announcements | THE GLASS HOUSE</title>
+            </Helmet>
             <h1 className="text-3xl font-bold text-center lg:text-left py-10">All Announcements</h1>
             <div className="flex justify-center items-center lg:my-6 px-6 lg:px-0">
                 <Swiper

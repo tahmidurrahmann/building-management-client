@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MakeAnnouncement = () => {
 
@@ -37,6 +38,9 @@ const MakeAnnouncement = () => {
 
     return (
         <div className="px-12">
+            <Helmet>
+                <title>Make Announcements | THE GLASS HOUSE</title>
+            </Helmet>
             <h1 className="text-3xl font-bold p-6">Make Announcement</h1>
             <form onSubmit={handleMakeAnnouncement} className="card-body space-y-6">
                 <div className="form-control">

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Loading from "../../../Loading/Loading";
 import useAgreement from "../../../hooks/useAgreement";
 import useAuth from "../../../hooks/useAuth";
@@ -15,6 +16,9 @@ const MemberProfile = () => {
     
     return (
         <div className="px-12">
+            <Helmet>
+                <title>Member Profile | THE GLASS HOUSE</title>
+            </Helmet>
             <h1 className="text-lg font-bold py-6">My Profile</h1>
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 rounded-lg border p-6">
                 <div className="avatar">

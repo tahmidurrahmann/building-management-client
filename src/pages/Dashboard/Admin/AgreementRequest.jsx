@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import Loading from "../../../Loading/Loading";
 import useAllAgreement from "../../../hooks/useAllAgreement";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const AgreementRequest = () => {
 
@@ -66,6 +67,9 @@ const AgreementRequest = () => {
 
     return (
         <div className="p-6">
+            <Helmet>
+                <title>Agreement Requests | THE GLASS HOUSE</title>
+            </Helmet>
             <h1 className="text-3xl font-bold pb-6">All Agreement Requests</h1>
             <div className="overflow-x-auto">
                 <table className="table table-xs">

@@ -76,7 +76,7 @@ const MainLayout = () => {
                     </div> : <NavLink
                         to="/login"
                         className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "lg:border-b-2  text-neutral-900 lg:text-white lg:border-b-white font-semibold" : "text-neutral-600 lg:text-white"
+                            isPending ? "pending" : isActive ? "lg:border-b-2  text-neutral-900 md:text-white lg:border-b-white font-semibold" : "text-white"
                         }
                     >
                         <span className="flex justify-center items-center gap-1"><CgLogIn />Login</span>

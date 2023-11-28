@@ -2,6 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../Loading/Loading";
+import { Helmet } from "react-helmet-async";
+import { MdLocalHotel } from "react-icons/md";
+import { MdEventAvailable } from "react-icons/md";
+import { CgUnavailable } from "react-icons/cg";
+import { FaUserCheck } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
 
 const AdminProfile = () => {
 
@@ -39,7 +45,7 @@ const AdminProfile = () => {
             return res?.data;
         }
     })
-    
+
     if (isPending || isLoading || isLoad) {
         return <Loading></Loading>
     }
@@ -54,6 +60,9 @@ const AdminProfile = () => {
 
     return (
         <div className="px-12">
+            <Helmet>
+                <title>Admin Profile | THE GLASS HOUSE</title>
+            </Helmet>
             <h1 className="text-lg font-bold py-6">Admin Profile</h1>
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 rounded-lg border p-6">
                 <div className="avatar">
@@ -72,17 +81,17 @@ const AdminProfile = () => {
                         <dl className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                             <div className="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
                                 <dt className="order-last text-lg font-medium text-gray-500">
-                                    Total Rooms
+                                    <span className="pt-6 flex justify-center items-center gap-3">Total Rooms <MdLocalHotel size={24} /></span>
                                 </dt>
 
                                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">
-                                {numberOfTotalRooms}
+                                    {numberOfTotalRooms}
                                 </dd>
                             </div>
 
                             <div className="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
                                 <dt className="order-last text-lg font-medium text-gray-500">
-                                Available Rooms
+                                    <span className="pt-6 flex justify-center items-center gap-3">Available Rooms <MdEventAvailable size={24} /></span>
                                 </dt>
 
                                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">{availablePercentage} %</dd>
@@ -90,21 +99,21 @@ const AdminProfile = () => {
 
                             <div className="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
                                 <dt className="order-last text-lg font-medium text-gray-500">
-                                Unavailable Rooms
+                                    <span className="pt-6 flex justify-center items-center gap-3">Unavailable Rooms<CgUnavailable size={24} /></span>
                                 </dt>
 
                                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">{bookedPercentage} %</dd>
                             </div>
                             <div className="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
                                 <dt className="order-last text-lg font-medium text-gray-500">
-                                Number of Members
+                                    <span className="pt-6 flex justify-center items-center gap-3">Number of Members<FaUserCheck size={24} /></span>
                                 </dt>
 
                                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">{numberOfMembers?.length}</dd>
                             </div>
                             <div className="flex flex-col rounded-lg bg-blue-100 px-4 py-8 text-center">
                                 <dt className="order-last text-lg font-medium text-gray-500">
-                                Number of Users
+                                    <span className="pt-6 flex justify-center items-center gap-3">Number of Users<FaUser size={24} /></span>
                                 </dt>
 
                                 <dd className="text-4xl font-extrabold text-blue-600 md:text-5xl">{numberOfUsers?.length}</dd>

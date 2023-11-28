@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import useCoupon from '../../../hooks/useCoupon';
 import Loading from '../../../Loading/Loading';
 import { MdOutlineDelete } from "react-icons/md";
+import { Helmet } from 'react-helmet-async';
 
 const ManageCoupon = () => {
 
@@ -77,6 +78,9 @@ const ManageCoupon = () => {
 
     return (
         <div className='px-2 md:px-12'>
+            <Helmet>
+                <title>Manage Coupons | THE GLASS HOUSE</title>
+            </Helmet>
             <div className='max-w-screen-xl mx-auto'>
                 <h1 className='text-xl md:text-3xl font-bold py-6 text-center md:text-left'>Manage Coupons</h1>
                 <div className="overflow-x-auto font-medium">

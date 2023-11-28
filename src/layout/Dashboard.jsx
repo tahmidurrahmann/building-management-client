@@ -4,6 +4,15 @@ import useAdmin from "../hooks/useAdmin";
 import useMember from "../hooks/useMember";
 import { IoHomeOutline } from "react-icons/io5";
 import Loading from "../Loading/Loading";
+import { FaUser } from "react-icons/fa";
+import { FaHistory } from "react-icons/fa";
+import { MdPayment } from "react-icons/md";
+import { MdAnnouncement } from "react-icons/md";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { TfiAnnouncement } from "react-icons/tfi";
+import { RiCoupon2Line } from "react-icons/ri";
+import { RiPassPendingLine } from "react-icons/ri";
+import { MdOutlineManageAccounts } from "react-icons/md";
 
 const Dashboard = () => {
 
@@ -22,9 +31,9 @@ const Dashboard = () => {
     return (
         <div>
             <div className="grid grid-cols-1 md:grid-cols-12">
-                <div className="col-span-1 md:col-span-3 xl:col-span-2">
+                <div className="col-span-1 md:col-span-4 xl:col-span-2">
                     <div className="bg-gray-50 md:min-h-screen">
-                        <h1 className="text-center md:text-xl xl:text-2xl font-bold py-4">THE GLASS HOUSE</h1>
+                        <h1 className="text-center text-xl xl:text-2xl font-extrabold py-4">SHANTA HOLDINGS</h1>
                         <div>
                             {
                                 user && isAdmin && <div className="flex flex-col  space-y-4 pt-4 justify-center items-center">
@@ -34,7 +43,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Admin Profile
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdOutlineAdminPanelSettings /> Admin Profile</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/manageMembers"
@@ -42,7 +51,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Manage Members
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdOutlineManageAccounts /> Manage Members</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/makeAnnouncement"
@@ -50,7 +59,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Make Announcement
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><TfiAnnouncement /> Make Announcement</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/agreementRequest"
@@ -58,7 +67,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Agreement Request
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><RiPassPendingLine /> Agreement Request</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/manageCoupons"
@@ -66,7 +75,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold"
                                         }
                                     >
-                                        Manage Coupons
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><RiCoupon2Line /> Manage Coupons</span>
                                     </NavLink>
                                 </div>
                             }
@@ -78,7 +87,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        My Profile
+                                       <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><FaUser /> My Profile</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/makePayment"
@@ -86,7 +95,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Make Payment
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdPayment /> Make Payment</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/paymentHistory"
@@ -94,7 +103,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Payment History
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><FaHistory /> Payment History</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/announcement"
@@ -102,7 +111,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Announcements
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdAnnouncement /> Announcements</span>
                                     </NavLink>
                                 </div>
                             }
@@ -114,7 +123,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        My Profile
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><FaUser /> My Profile</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/announcement"
@@ -122,7 +131,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                        Announcements
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdAnnouncement /> Announcements</span>
                                     </NavLink>
                                 </div>
                             }
@@ -135,12 +144,12 @@ const Dashboard = () => {
                                     isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold md:py-3" : "text-black text-xl font-semibold"
                                 }
                             >
-                               <span className="flex justify-center items-center gap-2"><IoHomeOutline /> Home</span>
+                               <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><IoHomeOutline /> Home</span>
                             </NavLink>
                         </div>
                     </div>
                 </div>
-                <div className="col-span-1 md:col-span-9 xl:col-span-10">
+                <div className="col-span-1 md:col-span-8 xl:col-span-10">
                     <Outlet></Outlet>
                 </div>
             </div>
