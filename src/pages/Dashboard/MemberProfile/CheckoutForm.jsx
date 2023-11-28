@@ -2,28 +2,23 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
-import usePayments from "../../../hooks/usePayments";
-import Loading from "../../../Loading/Loading";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ price }) => {
 
-    const [payments, isPending] = usePayments();
     const [clientSecret, setClientSecret] = useState("");
     const [error, setError] = useState("");
     const [transactionId, setTransactionId] = useState("");
-    const { user } = useAuth();
+    const { user, payment } = useAuth();
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
-
     useEffect(() => {
         if (price > 0) {
             axiosSecure.post("/create-payment-intent", { price: price })
                 .then(res => {
-                    console.log(res?.data)
                     setClientSecret(res?.data?.clientSecret);
                 })
         }
@@ -75,13 +70,13 @@ const CheckoutForm = ({ price }) => {
                 setTransactionId(paymentIntent.id);
             }
             const postPaymentHistory = {
-                price: price,
+                price: parseFloat(price),
                 email: user?.email,
                 transactionId: paymentIntent.id,
-                month: payments?.map(payment => payment?.month),
-                floor: payments?.map(payment => payment?.floor),
-                block: payments?.map(payment => payment?.block),
-                apartment: payments?.map(payment => payment?.apartment),
+                month: payment?.month,
+                floor: payment?.floor,
+                block: payment?.block,
+                apartment: payment?.apartment,
             }
             const res = await axiosSecure.post("/show-payment-history", postPaymentHistory);
             if (res?.data?.insertedId) {
@@ -95,10 +90,7 @@ const CheckoutForm = ({ price }) => {
         }
 
     }
-    if (isPending) {
-        return <Loading></Loading>
-    }
-    console.log(payments);
+
     return (
         <div>
             <form className="px-4 lg:px-0" onSubmit={handleSubmit}>

@@ -1,68 +1,63 @@
 import { useEffect, useState } from "react";
-import Loading from "../../../Loading/Loading";
-import usePayments from "../../../hooks/usePayments";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
+import useAuth from "../../../hooks/useAuth";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_TOKEN);
 
 const MakePaymentById = () => {
 
-    const [payments, isPending] = usePayments();
     const [price, setPrice] = useState(0);
     const [disabled, setDisabled] = useState(false);
+    const { payment } = useAuth();
 
-    useEffect(() => {
-        payments?.map(payment => setPrice(payment?.rent));
-    }, [payments]);
-
-    if (isPending) {
-        return <Loading></Loading>
-    }
+    useEffect(()=>{
+        setPrice(payment?.rent);
+    },[payment?.rent])
 
     const handleApplyCoupon = (e) => {
         e.preventDefault();
         const form = e.target;
         const code = form?.code?.value;
-        if (code === "SELL100" && price > 0) {
-            const discount = price * 0.1;
-            const payablePrice = price - discount;
+        if (code === "SELL100" && payment?.rent > 0) {
+            const discount = payment?.rent * 0.1;
+            const payablePrice = payment?.rent - discount;
             setPrice(payablePrice.toFixed(2));
             setDisabled(true);
             form.reset();
         }
-        if (code === "SELL200" && price > 0) {
-            const discount = price * 0.2;
-            const payablePrice = price - discount;
+        if (code === "SELL200" && payment?.rent > 0) {
+            const discount = payment?.rent * 0.2;
+            const payablePrice = payment?.rent - discount;
             setPrice(payablePrice.toFixed(2))
             setDisabled(true);
             form.reset();
         }
-        if (code === "SELL300" && price > 0) {
-            const discount = price * 0.3;
-            const payablePrice = price - discount;
+        if (code === "SELL300" && payment?.rent > 0) {
+            const discount = payment?.rent * 0.3;
+            const payablePrice = payment?.rent - discount;
             setPrice(payablePrice.toFixed(2))
             setDisabled(true);
             form.reset();
         }
-        if (code === "SELL400" && price > 0) {
-            const discount = price * 0.4;
-            const payablePrice = price - discount;
+        if (code === "SELL400" && payment?.rent > 0) {
+            const discount = payment?.rent * 0.4;
+            const payablePrice = payment?.rent - discount;
             setPrice(payablePrice.toFixed(2))
             setDisabled(true);
             form.reset();
         }
-        if (code === "SELL500" && price > 0) {
-            const discount = price * 0.5;
-            const payablePrice = price - discount;
+        if (code === "SELL500" && payment?.rent > 0) {
+            const discount = payment?.rent * 0.5;
+            const payablePrice = payment?.rent - discount;
             setPrice(payablePrice.toFixed(2))
             setDisabled(true);
             form.reset();
         }
-        if (code === "SELL600" && price > 0) {
-            const discount = price * 0.6;
-            const payablePrice = price - discount;
+        if (code === "SELL600" && payment?.rent > 0) {
+            const discount = payment?.rent * 0.6;
+            const payablePrice = payment?.rent - discount;
             setPrice(payablePrice.toFixed(2))
             setDisabled(true);
             form.reset();

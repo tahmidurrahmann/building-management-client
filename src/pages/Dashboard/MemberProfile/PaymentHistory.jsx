@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 
 const PaymentHistory = () => {
 
+    const [history, setHistory] = useState([]);
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const [searchedData, setSearchedData] = useState([]);
 
-    const { data: paymentHistory = [], isPending } = useQuery({
+    const { data: paymentHistory = [], isPending} = useQuery({
         queryKey: ["paymentHistory", user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/show-payment-history?email=${user?.email}`);
@@ -18,11 +18,9 @@ const PaymentHistory = () => {
         }
     })
 
-    useEffect(()=>{
-        paymentHistory?.map(payment => setSearchedData(payment?.month));
-    },[paymentHistory])
-
-    console.log(searchedData);
+    useEffect(() => {
+        setHistory(paymentHistory)
+    }, [paymentHistory])
 
     if (isPending) {
         return <Loading></Loading>
@@ -32,10 +30,8 @@ const PaymentHistory = () => {
         e.preventDefault();
         const form = e.target;
         const month = form.month.value;
-        console.log(month);
-        // if(searchedData.length && month === searchedData.map(item => (item))){
-        //     console.log("paisi");
-        // }
+        const searchData = history.filter(item => item?.month.toLowerCase() == month.toLowerCase());
+        setHistory(searchData);
     }
 
     return (
@@ -52,6 +48,7 @@ const PaymentHistory = () => {
                             <th>#</th>
                             <th>Email</th>
                             <th>Rent</th>
+                            <th>Payment Month</th>
                             <th>TransactionId</th>
                             <th>Apartment No.</th>
                             <th>Floor No.</th>
@@ -60,14 +57,15 @@ const PaymentHistory = () => {
                     </thead>
                     <tbody>
                         {
-                            paymentHistory?.map((payment, index) => <tr key={payment?._id}>
+                            history?.map((payment, index) => <tr key={payment?._id}>
                                 <th>{index + 1}</th>
                                 <td>{payment?.email}</td>
                                 <td>$ {payment?.price}</td>
+                                <td>{payment?.month}</td>
                                 <td>{payment?.transactionId}</td>
-                                <td>{payment?.apartment[0]}</td>
-                                <td>{payment?.floor[0]}</td>
-                                <td>{payment?.block[0]}</td>
+                                <td>{payment?.apartment}</td>
+                                <td>{payment?.floor}</td>
+                                <td>{payment?.block}</td>
                             </tr>)
                         }
                     </tbody>

@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
 import useAgreement from "../../../hooks/useAgreement";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 
 const MakePayment = () => {
 
     const [agreementData, isPending] = useAgreement();
-    const axiosSecure = useAxiosSecure();
+    const {setPayment} = useAuth();
     const navigate = useNavigate();
 
     if (isPending) {
@@ -25,11 +25,8 @@ const MakePayment = () => {
         const rent = form?.rent?.value;
         const month = form?.month?.value;
         const paymentDetails = { email, floor, block, apartment, rent, month };
-        console.log(paymentDetails);
-        const res = await axiosSecure.post("/paymentDetails", paymentDetails);
-        if (res?.data?.insertedId) {
-            navigate(`/dashboard/makePayments`)
-        }
+        setPayment(paymentDetails);
+        navigate("/dashboard/makePayments")
     }
 
     return (
