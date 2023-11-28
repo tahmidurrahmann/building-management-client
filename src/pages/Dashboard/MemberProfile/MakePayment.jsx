@@ -1,12 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import Loading from "../../../Loading/Loading";
 import useAgreement from "../../../hooks/useAgreement";
-import useAuth from "../../../hooks/useAuth";
 
 const MakePayment = () => {
 
     const [agreementData, isPending] = useAgreement();
-    const {setPayment} = useAuth();
     const navigate = useNavigate();
 
     if (isPending) {
@@ -25,7 +23,7 @@ const MakePayment = () => {
         const rent = form?.rent?.value;
         const month = form?.month?.value;
         const paymentDetails = { email, floor, block, apartment, rent, month };
-        setPayment(paymentDetails);
+        localStorage.setItem("payment-info", JSON.stringify(paymentDetails));
         navigate("/dashboard/makePayments")
     }
 

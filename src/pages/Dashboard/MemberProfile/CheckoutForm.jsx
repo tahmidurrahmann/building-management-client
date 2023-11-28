@@ -10,7 +10,10 @@ const CheckoutForm = ({ price }) => {
     const [clientSecret, setClientSecret] = useState("");
     const [error, setError] = useState("");
     const [transactionId, setTransactionId] = useState("");
-    const { user, payment } = useAuth();
+    const { user } = useAuth();
+
+    const jsonString = localStorage.getItem('payment-info');
+    const data = JSON.parse(jsonString);
     const stripe = useStripe();
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
@@ -73,10 +76,10 @@ const CheckoutForm = ({ price }) => {
                 price: parseFloat(price),
                 email: user?.email,
                 transactionId: paymentIntent.id,
-                month: payment?.month,
-                floor: payment?.floor,
-                block: payment?.block,
-                apartment: payment?.apartment,
+                month: data?.month,
+                floor: data?.floor,
+                block: data?.block,
+                apartment: data?.apartment,
             }
             const res = await axiosSecure.post("/show-payment-history", postPaymentHistory);
             if (res?.data?.insertedId) {

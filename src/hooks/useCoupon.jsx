@@ -6,7 +6,7 @@ const useCoupon = () => {
     const axiosSecure = useAxiosSecure();
 
     const {data : coupons = [], isPending, refetch} = useQuery({
-        queryKey : ["coupon"],
+        queryKey : ["adminPostCoupon"],
         queryFn : async () => {
             const res = await axiosSecure.get("/get-coupon-info");
             return res?.data;

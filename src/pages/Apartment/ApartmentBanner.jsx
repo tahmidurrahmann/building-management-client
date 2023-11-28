@@ -1,4 +1,5 @@
 import { Parallax } from 'react-parallax';
+import { motion } from "framer-motion";
 
 const ApartmentBanner = () => {
     return (
@@ -13,10 +14,10 @@ const ApartmentBanner = () => {
                     <div className="hero-overlay bg-opacity-40"></div>
                     <div className="hero-content text-center text-neutral-content">
                         <div className="p-4 md:p-8 lg:px-72 lg:py-24">
-                            <div className='space-y-2 md:space-y-5'>
+                            <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: "2", delay: "0" }} className='space-y-2 md:space-y-5'>
                                 <h1 className='text-4xl md:text-5xl lg:text-7xl text-white'>Book Your Stay</h1>
                                 <p className='text-sm md:text-base font-semibold text-center'>A stay infused with creativity and culture.</p>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>

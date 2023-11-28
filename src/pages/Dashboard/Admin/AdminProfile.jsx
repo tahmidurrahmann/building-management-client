@@ -39,14 +39,14 @@ const AdminProfile = () => {
             return res?.data;
         }
     })
-
-
+    
     if (isPending || isLoading || isLoad) {
         return <Loading></Loading>
     }
 
+
     const totalApartments = data?.apartmentTotal;
-    const agreementTotal = data?.bookedTotal;
+    const agreementTotal = data?.bookedTotal?.length;
     const bookedPercentages = (agreementTotal / totalApartments) * 100;
     const bookedPercentage = bookedPercentages.toFixed(2);
     const availablePercentages = 100 - bookedPercentage;

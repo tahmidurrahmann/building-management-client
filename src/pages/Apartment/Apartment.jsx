@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { motion } from "framer-motion";
 
 const Apartment = () => {
 
@@ -97,7 +98,7 @@ const Apartment = () => {
 
             <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 lg:p-0 mb-12">
                 {
-                    result.map(apartment => <div className="group overflow-hidden cursor-pointer rounded-md" key={apartment._id}>
+                    result.map(apartment => <motion.div initial={{ y: 150 }} animate={{ y: 0 }} transition={{ duration: "2", delay: "0" }} className="group overflow-hidden cursor-pointer rounded-md" key={apartment._id}>
                         <img
                             alt="Home"
                             src={apartment?.apartmentImage}
@@ -141,7 +142,7 @@ const Apartment = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>)
+                    </motion.div>)
                 }
             </div>
             <div className="flex gap-6 justify-center items-center mb-10">

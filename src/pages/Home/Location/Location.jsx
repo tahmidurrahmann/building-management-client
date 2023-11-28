@@ -2,6 +2,7 @@ import Heading from "../../../components/Heading/Heading";
 import { FiPhoneCall } from 'react-icons/fi';
 import { SlLocationPin } from "react-icons/sl";
 import { HiOutlineMail } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 const Location = () => {
     return (
@@ -18,7 +19,7 @@ const Location = () => {
                     </iframe>
                 </div>
             </div>
-            <div className="max-w-screen-2xl mx-auto">
+            <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: "3", delay: "1" }} className="max-w-screen-2xl mx-auto">
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center my-16 p-8 container mx-auto'>
                     <div className='bg-[#ABCE4E] p-20 rounded-lg space-y-4'>
                         <div className='bg-white p-3 rounded-full w-[40px] mx-auto'>
@@ -45,7 +46,7 @@ const Location = () => {
                         <p className='font-poppins text-white'>theglasshouse@gmail.com</p>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };

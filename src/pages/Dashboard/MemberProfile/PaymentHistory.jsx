@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../Loading/Loading";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const PaymentHistory = () => {
 
@@ -14,13 +14,10 @@ const PaymentHistory = () => {
         queryKey: ["paymentHistory", user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/show-payment-history?email=${user?.email}`);
+            setHistory(res?.data);
             return res?.data;
         }
     })
-
-    useEffect(() => {
-        setHistory(paymentHistory)
-    }, [paymentHistory])
 
     if (isPending) {
         return <Loading></Loading>
@@ -30,7 +27,7 @@ const PaymentHistory = () => {
         e.preventDefault();
         const form = e.target;
         const month = form.month.value;
-        const searchData = history.filter(item => item?.month.toLowerCase() == month.toLowerCase());
+        const searchData = paymentHistory?.filter(item => item?.month.toLowerCase() == month.toLowerCase());
         setHistory(searchData);
     }
 
