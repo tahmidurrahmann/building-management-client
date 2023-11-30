@@ -25,7 +25,7 @@ const Announcement = () => {
             <h1 className="text-3xl font-bold text-center lg:text-left py-10">All Announcements</h1>
             <div className="flex justify-center items-center lg:my-6 px-6 lg:px-0">
                 <Swiper
-                    slidesPerView={2}
+                    slidesPerView={1}
                     spaceBetween={30}
                     pagination={{
                         clickable: true,
