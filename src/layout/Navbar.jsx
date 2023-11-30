@@ -18,6 +18,8 @@ import { CgLogOut } from "react-icons/cg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { FaRegUser } from "react-icons/fa";
 import { Button, Container } from '@mui/material';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const drawerWidth = 240;
 
@@ -31,37 +33,62 @@ function Navbar(props) {
             .catch(error => console.log(error.message))
     }
 
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     const navLinks = <div className="flex flex-col md:flex-row justify-center items-center gap-5">
         <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "md:py-8 md:border-b-2  text-neutral-900 md:text-white md:border-b-white font-semibold text-sm" : "text-neutral-600 md:text-white text-sm"
+                isPending ? "pending" : isActive ? "md:py-5 md:border-b-2  text-neutral-900 md:text-white md:border-b-white font-semibold text-sm" : "text-neutral-600 md:text-white text-sm"
             }
         >
-            <span className="flex justify-center items-center gap-1"><FaHome></FaHome>Home</span>
+            <span className="flex justify-center items-center gap-1"><FaHome />Home</span>
         </NavLink>
         <NavLink
             to="/apartment"
             className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "md:py-8 md:border-b-2  text-neutral-900 md:text-white md:border-b-white font-semibold text-sm" : "text-neutral-600 md:text-white text-sm"
+                isPending ? "pending" : isActive ? "md:py-5 md:border-b-2  text-neutral-900 md:text-white md:border-b-white font-semibold text-sm" : "text-neutral-600 md:text-white text-sm"
             }
         >
             <span className="flex justify-center items-center gap-1"><MdApartment />Apartment</span>
         </NavLink>
-        {user?.email ? <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="p-1"><img className="w-[40px] rounded-full" referrerPolicy="no-referrer" src={user?.photoURL} alt="" /></label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32 md:w-52">
-                <h1 className="py-1 text-center text-neutral-600 font-semibold flex justify-center items-center gap-2"><FaRegUser /> {user?.displayName}</h1>
-                <NavLink
+        {user?.email ? <div>
+            <Button
+                id="basic-button"
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+            >
+                <img className="w-[40px] rounded-full" referrerPolicy="no-referrer" src={user?.photoURL} alt="" />
+            </Button>
+            <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                }}
+            >
+                <h1 className="px-6 py-2 text-neutral-600 font-semibold flex justify-center items-center gap-2"><FaRegUser /> {user?.displayName}</h1>
+                <MenuItem onClick={handleClose}><NavLink
                     to="/dashboard"
                     className={({ isActive, isPending }) =>
-                        isPending ? "pending" : isActive ? "py-2 text-neutral-900 font-bold" : "text-neutral-900 font-bold py-2"
+                        isPending ? "pending" : isActive ? "" : "px-3 text-neutral-900 font-bold"
                     }
                 >
                     <span className="flex justify-center items-center gap-1"><LuLayoutDashboard /> Dashboard</span>
-                </NavLink>
-                <button className="bg-[#DD2955] px-2 py-1 rounded-full text-white font-semibold justify-center flex items-center gap-2" onClick={handleLogout}>Logout<CgLogOut /></button>
-            </ul>
+                </NavLink></MenuItem>
+                <MenuItem onClick={handleClose}><Button sx={{mx : 1.5}} variant="contained" color="error" onClick={handleLogout}>Logout<CgLogOut /></Button></MenuItem>
+            </Menu>
         </div> : <NavLink
             to="/login"
             className={({ isActive, isPending }) =>
@@ -97,7 +124,7 @@ function Navbar(props) {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar
-                position="fixed" sx={{ backgroundColor: "#1515154D", zIndex: { appBar: 1100 } }} component="nav">
+                position="fixed" sx={{ backgroundColor: "#1515154D" }} component="nav">
                 <Container maxWidth="2xl">
                     <Toolbar>
                         <IconButton
