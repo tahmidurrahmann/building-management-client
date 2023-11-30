@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const AboutBuilding = () => {
     return (
-        <div className="max-w-screen-2xl mx-auto my-10 lg:my-20">
+        <div className="max-w-screen-2xl mx-auto my-10 md:my-20">
             <Heading heading="about the building"></Heading>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                 <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: "2", delay: "0" }} className="flex justify-center items-center">

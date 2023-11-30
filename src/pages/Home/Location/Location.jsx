@@ -3,6 +3,7 @@ import { FiPhoneCall } from 'react-icons/fi';
 import { SlLocationPin } from "react-icons/sl";
 import { HiOutlineMail } from "react-icons/hi";
 import { motion } from "framer-motion";
+import { Grid, Paper, Typography } from '@mui/material';
 
 const Location = () => {
     return (
@@ -19,33 +20,68 @@ const Location = () => {
                     </iframe>
                 </div>
             </div>
-            <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: "3", delay: "1" }} className="max-w-screen-2xl mx-auto">
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center my-16 p-8 container mx-auto'>
-                    <div className='bg-[#ABCE4E] p-20 rounded-lg space-y-4'>
-                        <div className='bg-white p-3 rounded-full w-[40px] mx-auto'>
-                            <FiPhoneCall></FiPhoneCall>
-                        </div>
-                        <h1 className='text-3xl text-white font-semibold'>Call Us</h1>
-                        <p className='text-white font-poppins'>Phone : 01719991111</p>
-                        <p className='font-poppins text-white'>Fax: +6221.2002.2013</p>
-                    </div>
-                    <div className='bg-[#F55D52] p-20 rounded-lg space-y-4'>
-                        <div className='bg-white p-3 rounded-full w-[40px] mx-auto'>
-                            <SlLocationPin></SlLocationPin>
-                        </div>
-                        <h1 className='text-3xl text-white font-semibold'>Location</h1>
-                        <p className='text-white font-poppins'>38 Gulshan Ave, Dhaka 1212</p>
-                        <p className='font-poppins text-white'>Dhaka - Bangladesh</p>
-                    </div>
-                    <div className='bg-[#5B9ACF] p-20 rounded-lg space-y-4'>
-                        <div className='bg-white p-3 rounded-full w-[40px] mx-auto'>
-                            <HiOutlineMail></HiOutlineMail>
-                        </div>
-                        <h1 className='text-3xl text-white font-semibold'>Email Us</h1>
-                        <p className='text-white font-poppins'>shantaholdings@gmail.com</p>
-                        <p className='font-poppins text-white'>theglasshouse@gmail.com</p>
-                    </div>
-                </div>
+            <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: 3, delay: 1 }} className="max-w-screen-2xl mx-auto">
+                <Grid style={{ textAlign: "center" }} container spacing={6} justifyContent="center" alignItems="center" my={6} p={8}>
+                    {/* Call Us */}
+                    <Grid item xs={12} md={6} lg={4}>
+                        <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: 3, delay: 1 }}>
+                            <Paper elevation={3} sx={{ backgroundColor: '#ABCE4E', padding: 4, borderRadius: 3 }}>
+                                <div style={{ color: "white", width: 40, margin: '0 auto' }}>
+                                    <FiPhoneCall size={26} />
+                                </div>
+                                <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold', mt: 2 }}>
+                                    Call Us
+                                </Typography>
+                                <Typography variant="body1" sx={{ color: 'white', fontFamily: 'Poppins', mt: 1 }}>
+                                    Phone: 01719991111
+                                </Typography>
+                                <Typography variant="body1" sx={{ color: 'white', fontFamily: 'Poppins' }}>
+                                    Fax: +6221.2002.2013
+                                </Typography>
+                            </Paper>
+                        </motion.div>
+                    </Grid>
+
+                    {/* Location */}
+                    <Grid style={{ textAlign: "center" }} item xs={12} md={6} lg={4}>
+                        <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: 3, delay: 1 }}>
+                            <Paper elevation={3} sx={{ backgroundColor: '#F55D52', padding: 4, borderRadius: 3 }}>
+                                <div style={{ color: "white", width: 40, margin: '0 auto' }}>
+                                    <SlLocationPin size={26} />
+                                </div>
+                                <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold', mt: 2 }}>
+                                    Location
+                                </Typography>
+                                <Typography variant="body1" sx={{ color: 'white', fontFamily: 'Poppins', mt: 1 }}>
+                                    38 Gulshan Ave, Dhaka 1212
+                                </Typography>
+                                <Typography variant="body1" sx={{ color: 'white', fontFamily: 'Poppins' }}>
+                                    Dhaka - Bangladesh
+                                </Typography>
+                            </Paper>
+                        </motion.div>
+                    </Grid>
+
+                    {/* Email Us */}
+                    <Grid style={{ textAlign: "center" }} item xs={12} md={6} lg={4}>
+                        <motion.div initial={{ y: -150 }} animate={{ y: 0 }} transition={{ duration: 3, delay: 1 }}>
+                            <Paper elevation={3} sx={{ backgroundColor: '#5B9ACF', padding: 4, borderRadius: 3 }}>
+                                <div style={{ color: "white", width: 40, margin: '0 auto' }}>
+                                    <HiOutlineMail size={26} />
+                                </div>
+                                <Typography variant="h4" sx={{ color: 'white', fontWeight: 'bold', mt: 2 }}>
+                                    Email Us
+                                </Typography>
+                                <Typography variant="body1" sx={{ color: 'white', fontFamily: 'Poppins', mt: 1 }}>
+                                    shantaholdings@gmail.com
+                                </Typography>
+                                <Typography variant="body1" sx={{ color: 'white', fontFamily: 'Poppins' }}>
+                                    theglasshouse@gmail.com
+                                </Typography>
+                            </Paper>
+                        </motion.div>
+                    </Grid>
+                </Grid>
             </motion.div>
         </div>
     );

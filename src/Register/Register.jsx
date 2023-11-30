@@ -34,27 +34,27 @@ const Register = () => {
         });
         const image = uploadImage.data?.data?.display_url;
         createUser(email, password)
-        .then(result=>{
-            const user = result?.user;
-            updateProfile(user, {
-                displayName: name, photoURL: image
-              }).then( async () => {
-                toast.success("Successfully created your profile");
-                const saveLoginIntoDB = {
-                    email : email,
-                    name : name,
-                    role : "user",
-                };
-                const res = await axiosPublic.post("/users",saveLoginIntoDB);
-                console.log(res?.data);
-                navigate("/")
-              }).catch((error) => {
-                toast.error(error?.message)
-              });
-        })
-        .catch(error =>{
-            toast.error(error?.message);
-        })
+            .then(result => {
+                const user = result?.user;
+                updateProfile(user, {
+                    displayName: name, photoURL: image
+                }).then(async () => {
+                    toast.success("Successfully created your profile");
+                    const saveLoginIntoDB = {
+                        email: email,
+                        name: name,
+                        role: "user",
+                    };
+                    const res = await axiosPublic.post("/users", saveLoginIntoDB);
+                    console.log(res?.data);
+                    navigate("/")
+                }).catch((error) => {
+                    toast.error(error?.message)
+                });
+            })
+            .catch(error => {
+                toast.error(error?.message);
+            })
     }
 
     return (
