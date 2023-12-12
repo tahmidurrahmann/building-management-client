@@ -20,6 +20,7 @@ import ManageCoupon from "../pages/Dashboard/Admin/ManageCoupon";
 import MakePayment from "../pages/Dashboard/MemberProfile/MakePayment";
 import PaymentHistory from "../pages/Dashboard/MemberProfile/PaymentHistory";
 import MakePaymentById from "../pages/Dashboard/MemberProfile/MakePaymentById";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path : "/apartment",
                 element : <Apartment></Apartment>,
+            },
+            {
+                path : "/contact",
+                element : <Contact></Contact>,
             },
         ]
     },

@@ -20,6 +20,7 @@ import { FaRegUser } from "react-icons/fa";
 import { Button, Container } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { IoCall } from "react-icons/io5";
 
 const drawerWidth = 240;
 
@@ -58,6 +59,14 @@ function Navbar(props) {
             }
         >
             <span className="flex justify-center items-center gap-1"><MdApartment />Apartment</span>
+        </NavLink>
+        <NavLink
+            to="/contact"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "md:py-5 md:border-b-2  text-neutral-900 md:text-white md:border-b-white font-semibold text-sm" : "text-neutral-600 md:text-white text-sm"
+            }
+        >
+            <span className="flex justify-center items-center gap-1"><IoCall />Contact</span>
         </NavLink>
         {user?.email ? <div>
             <Button
