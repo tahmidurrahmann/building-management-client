@@ -60,14 +60,14 @@ function Navbar(props) {
         >
             <span className="flex justify-center items-center gap-1"><MdApartment />Apartment</span>
         </NavLink>
-        <NavLink
+        {user?.email && <NavLink
             to="/contact"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "md:py-5 md:border-b-2  text-neutral-900 md:text-white md:border-b-white font-semibold text-sm" : "text-neutral-600 md:text-white text-sm"
             }
         >
             <span className="flex justify-center items-center gap-1"><IoCall />Contact</span>
-        </NavLink>
+        </NavLink>}
         {user?.email ? <div>
             <Button
                 id="basic-button"
