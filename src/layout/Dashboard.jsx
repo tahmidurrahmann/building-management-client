@@ -13,6 +13,7 @@ import { TfiAnnouncement } from "react-icons/tfi";
 import { RiCoupon2Line } from "react-icons/ri";
 import { RiPassPendingLine } from "react-icons/ri";
 import { MdOutlineManageAccounts } from "react-icons/md";
+import { MdEvent } from "react-icons/md";
 
 const Dashboard = () => {
 
@@ -20,11 +21,11 @@ const Dashboard = () => {
     const [isAdmin, pending] = useAdmin();
     const [isMember, isPending] = useMember();
 
-    if(isPending){
+    if (isPending) {
         return <Loading></Loading>
     }
 
-    if(pending){
+    if (pending) {
         return <Loading></Loading>
     }
 
@@ -77,6 +78,14 @@ const Dashboard = () => {
                                     >
                                         <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><RiCoupon2Line /> Manage Coupons</span>
                                     </NavLink>
+                                    <NavLink
+                                        to="/dashboard/addEvent"
+                                        className={({ isActive, isPending }) =>
+                                            isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
+                                        }
+                                    >
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdEvent /> Add Event</span>
+                                    </NavLink>
                                 </div>
                             }
                             {
@@ -87,7 +96,7 @@ const Dashboard = () => {
                                             isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
                                         }
                                     >
-                                       <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><FaUser /> My Profile</span>
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><FaUser /> My Profile</span>
                                     </NavLink>
                                     <NavLink
                                         to="/dashboard/makePayment"
@@ -112,6 +121,14 @@ const Dashboard = () => {
                                         }
                                     >
                                         <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdAnnouncement /> Announcements</span>
+                                    </NavLink>
+                                    <NavLink
+                                        to="/dashboard/events"
+                                        className={({ isActive, isPending }) =>
+                                            isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold py-3 text-center" : "text-black text-xl font-semibold text-center"
+                                        }
+                                    >
+                                        <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><MdEvent />All Events</span>
                                     </NavLink>
                                 </div>
                             }
@@ -144,7 +161,7 @@ const Dashboard = () => {
                                     isPending ? "pending" : isActive ? "text-blue-500 bg-white w-full text-xl font-semibold md:py-3" : "text-black text-xl font-semibold"
                                 }
                             >
-                               <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><IoHomeOutline /> Home</span>
+                                <span className="flex justify-center items-center gap-2 md:gap-0.5 lg:gap-2"><IoHomeOutline /> Home</span>
                             </NavLink>
                         </div>
                     </div>

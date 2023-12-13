@@ -21,6 +21,8 @@ import MakePayment from "../pages/Dashboard/MemberProfile/MakePayment";
 import PaymentHistory from "../pages/Dashboard/MemberProfile/PaymentHistory";
 import MakePaymentById from "../pages/Dashboard/MemberProfile/MakePaymentById";
 import Contact from "../pages/Contact/Contact";
+import AddEvent from "../pages/Dashboard/Admin/AddEvent";
+import AllEvents from "../pages/Dashboard/MemberProfile/AllEvents";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +82,10 @@ const router = createBrowserRouter([
                 path : "paymentHistory",
                 element : <MemberRoute><PaymentHistory></PaymentHistory></MemberRoute>
             },
+            {
+                path : "events",
+                element : <MemberRoute><AllEvents></AllEvents></MemberRoute>
+            },
             // admin
             {
                 path : "adminProfile",
@@ -92,6 +98,10 @@ const router = createBrowserRouter([
             {
                 path : "makeAnnouncement",
                 element : <AdminRoute><MakeAnnouncement></MakeAnnouncement></AdminRoute>,
+            },
+            {
+                path : "addEvent",
+                element : <AdminRoute><AddEvent></AddEvent></AdminRoute>,
             },
             {
                 path : "agreementRequest",
